@@ -1,0 +1,21 @@
+{
+  "name": "front-end-boilerplate",
+  "version": "0.0.1",
+  "authors": [
+    "Wang Qiu <winsonwq@gmail.com>"
+  ],
+  "description": "front end boilerplate",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "jquery": "~1.11.0"
+  }
+}

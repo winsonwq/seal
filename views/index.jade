@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf8")
+    title Cruise
+
+    link(type="text/css",href="./bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
+    <!-- line -->
+
+    <!-- build:css styles/main.css -->
+    link(type="text/css",href="./styles/components/header.css",rel="stylesheet")
+    link(type="text/css",href="./styles/components/agent.css",rel="stylesheet")
+    link(type="text/css",href="./styles/components/resource.css",rel="stylesheet")
+    link(type="text/css",href="./styles/index.css",rel="stylesheet")
+    <!-- line -->
+    <!-- endbuild -->
+
+  body
+    include includes/header
+    article#content
+      .row
+        .col-md-12
+          .sub-nav
+            h2 Agents
+            ul
+              li
+                a(href="#") All
+              li
+                a(href="#") Physical
+              li
+                a(href="#") Virtual
+      .row
+        .col-md-8
+          section.agents
+            ul.agents-list
+              - for (var x = 0; x < 5; x++)
+                li
+                  include includes/agent
+
+        .col-md-4
+          aside.sidebar
+            section.summary
+              h3 Summary
+              table.table.table-bordered
+                tr
+                  td building
+                  td 2
+                tr
+                  td idle
+                  td 2
+
+            section.history
+              h3 History
+              ul
+                - for (var x = 0; x < 10; x++)
+                  li bjsdmngbgr02/Acceptance_test
+
+
+    script(type="text/javascript",src="./jquery/dist/jquery.min.js")
+    script(type="text/javascript",src="./bootstrap/dist/js/bootstrap.min.js")
