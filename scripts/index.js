@@ -1,4 +1,4 @@
 $(function() {
-  var thisisalongname = 'adfsdfsafsadf'
-  console.log(thisisalongname);
+  var str = 'staring coding.'
+  console.log(str);
 });

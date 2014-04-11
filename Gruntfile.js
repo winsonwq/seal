@@ -34,16 +34,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      views: {
-        files: ['views/**/*.jade'],
-        tasks: ['jade:dev'],
-        options: {
-          livereload: 35729
-        }
-      },
-      styles: {
-        files: ['styles/**/*.styl'],
-        tasks: ['stylus:dev'],
+      devAssets: {
+        files: ['views/**/*.jade', 'styles/**/*.styl', 'scripts/**/*.js'],
+        tasks: ['jade:temp', 'stylus:temp', 'copy:js2temp', 'copy:dev'],
         options: {
           livereload: 35729
         }
