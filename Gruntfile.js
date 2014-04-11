@@ -79,14 +79,19 @@ module.exports = function(grunt) {
       dev: {
         files: [
           { expand: true, cwd: '.temp', src : './styles/**', dest: 'dev/'},
+          { expand: true, src : 'scripts/**', dest: 'dev/'},
           { src : '.temp/index.html', dest: 'dev/index.html' }
         ]
       },
       build: {
         files: [
           { src : '.temp/styles/main.css', dest: 'public/styles/main.css'},
+          { src : '.temp/scripts/index.js', dest: 'public/scripts/index.js'},
           { src : '.temp/index.html', dest: 'public/index.html' }
         ]
+      },
+      js2temp: {
+        expand: true, src : 'scripts/**', dest: '.temp/'
       }
     }
   });
@@ -105,10 +110,13 @@ module.exports = function(grunt) {
     'clean',
     'jade:temp',
     'stylus:temp',
+    'copy:js2temp',
     'useminPrepare',
     'concat',
     'cssmin',
+    'uglify',
     'usemin',
-    'copy:build'
+    'copy:build',
+    'connect:build'
   ]);
 };
