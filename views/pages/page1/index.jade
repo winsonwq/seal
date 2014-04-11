@@ -1,0 +1,22 @@
+extend ../../layouts/index
+
+block head
+
+  <!-- line -->
+  <!-- build:css /styles/index.min.css -->
+  link(type="text/css",href="/styles/components/header.css",rel="stylesheet")
+  link(type="text/css",href="/styles/components/agent.css",rel="stylesheet")
+  link(type="text/css",href="/styles/components/resource.css",rel="stylesheet")
+  link(type="text/css",href="/styles/index.css",rel="stylesheet")
+  <!-- line -->
+  <!-- endbuild -->
+
+block footer_script
+
+  script(type="text/javascript",src="/jquery/dist/jquery.min.js")
+  script(type="text/javascript",src="/bootstrap/dist/js/bootstrap.min.js")
+  <!-- line -->
+  <!-- build:js /scripts/page1/index.min.js -->
+  script(type="text/javascript",src="/scripts/index.js")
+  <!-- line -->
+  <!-- endbuild -->

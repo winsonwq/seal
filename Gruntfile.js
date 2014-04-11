@@ -1,3 +1,5 @@
+var PATH = require('path');
+
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -6,14 +8,13 @@ module.exports = function(grunt) {
     clean: ['<%=buildPath%>', '<%=devPath%>', '.tmp', '.temp'],
     jade: {
       options: {
-        client: false
+        client: false,
+        pretty: true
       },
       temp: {
-        src: ['views/index.jade'],
-        dest: '.temp',
-        options: {
-          pretty: true
-        }
+        files: [
+          { expand: true, cwd: 'views/', src: ['./pages/page*/index.jade'], dest: '.temp/', ext: '.html' }
+        ]
       }
     },
     connect: {
@@ -27,7 +28,7 @@ module.exports = function(grunt) {
       },
       build: {
         options: {
-          port: 9002,
+          port: 9001,
           base: ['public', 'bower_components'],
           keepalive: true
         }
@@ -49,38 +50,49 @@ module.exports = function(grunt) {
     },
     stylus: {
       temp: {
-        files: {
-          '.temp/styles/index.css': 'styles/index.styl',
-          '.temp/styles/components/header.css': 'styles/components/header.styl',
-          '.temp/styles/components/agent.css': 'styles/components/agent.styl',
-          '.temp/styles/components/resource.css': 'styles/components/resource.styl'
-        }
+        files: [{
+          expand: true,
+          src: 'styles/**/*.styl',
+          dest: '.temp/',
+          ext: '.css',
+          filter: function (filename) {;
+            return PATH.basename(filename)[0] != '_';
+          }
+        }]
       }
     },
     useminPrepare: {
       build: {
-        src: '.temp/index.html',
+        src: '.temp/pages/**/*.html',
         options: {
-          dest: '.temp'
+          dest: '.temp',
+          root: '.temp'
         }
       }
     },
     usemin: {
-      html: '.temp/index.html'
+      html: '.temp/pages/**/*.html'
     },
     copy: {
       dev: {
         files: [
           { expand: true, cwd: '.temp', src : './styles/**', dest: 'dev/'},
           { expand: true, src : 'scripts/**', dest: 'dev/'},
-          { src : '.temp/index.html', dest: 'dev/index.html' }
+          { expand: true, cwd: '.temp', src : './pages/**', dest: 'dev/'}
         ]
       },
       build: {
         files: [
-          { src : '.temp/styles/main.css', dest: 'public/styles/main.css'},
-          { src : '.temp/scripts/index.js', dest: 'public/scripts/index.js'},
-          { src : '.temp/index.html', dest: 'public/index.html' }
+          {
+            expand: true,
+            cwd: '.temp',
+            src : ['./styles/**/*.css', './scripts/**/*.js'],
+            dest: './public',
+            filter: function (filename) {
+              return filename.indexOf('.min.') != -1;
+            }
+          },
+          { expand: true, cwd: '.temp', src : './pages/**', dest: 'public/'}
         ]
       },
       js2temp: {
