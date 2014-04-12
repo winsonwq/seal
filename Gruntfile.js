@@ -121,7 +121,6 @@ module.exports = function(grunt) {
     'cssmin',
     'uglify',
     'usemin',
-    'copy:build',
-    'connect:build'
+    'copy:build'
   ]);
 };
