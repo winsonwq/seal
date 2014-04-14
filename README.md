@@ -24,3 +24,7 @@
 
 1. generate production files in `public`
 2. compressed css / js
+
+### grunt mocha
+
+`grunt mocha` would run unit test under `test/unit/**/*.js`
