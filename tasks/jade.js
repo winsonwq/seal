@@ -7,7 +7,7 @@ module.exports = function gruntJade(grunt) {
     },
     temp: {
       files: [
-        { expand: true, cwd: 'views/', src: ['./pages/page*/index.jade'], dest: '.temp/', ext: '.html' }
+        { expand: true, cwd: 'views/', src: ['./pages/**/*.jade'], dest: '.temp/', ext: '.html' }
       ]
     }
   });
