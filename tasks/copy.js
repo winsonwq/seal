@@ -13,7 +13,7 @@ module.exports = function gruntCopy(grunt) {
         {
           expand: true,
           cwd: '.temp',
-          src : ['./styles/**/*.css', './scripts/**/*.js'],
+          src : ['./**/*.css', './**/*.js'],
           dest: './public',
           filter: function (filename) {
             return filename.indexOf('.min.') != -1;

@@ -16,34 +16,31 @@ module.exports = function gruntUsemin (grunt) {
       flow: {
         steps: {'css': ['concat', 'cssmin'], 'js' : ['concat', 'uglifyjs'] },
         post: {
-          'css': [{
-            name: 'concat',
-            createConfig: function (context, block) {
-              var generated = context.options.generated;
-              generated.files[0].dest = PATH.resolve(context.inDir, block.dest);
-            }
-          }, {
-            name: 'cssmin',
-            createConfig: function (context, block) {
-              var generated = context.options.generated;
-              generated.files[0].src = generated.files[0].dest = PATH.resolve(context.inDir, block.dest);
-            }
-          }],
-          'js': [{
-            name: 'concat',
-            createConfig: function(context, block) {
-              context.options.generated.files[1].dest = PATH.resolve(context.inDir, block.dest);
-            }
-          }, {
-            name: 'uglify',
-            createConfig: function (context, block) {
-              var generated = context.options.generated;
-              generated.files[0].src = generated.files[0].dest = PATH.resolve(context.inDir, block.dest);
-            }
-          }]
+          'css': [
+            { name: 'concat', createConfig: concat },
+            { name: 'cssmin', createConfig: minify }
+          ],
+          'js': [
+            { name: 'concat', createConfig: concat },
+            { name: 'uglify', createConfig: minify }
+          ]
         }
       }
     }
   });
+
+  function lastGenerated (context) {
+    var generated = context.options.generated;
+    var last = generated.files.length - 1;
+    return generated.files[last];
+  }
+
+  function concat (context, block) {
+    lastGenerated(context).dest = PATH.resolve(context.inDir, block.dest);
+  }
+
+  function minify (context, block) {
+    lastGenerated(context).src = lastGenerated(context).dest = PATH.resolve(context.inDir, block.dest);
+  }
 
 };
