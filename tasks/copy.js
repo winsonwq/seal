@@ -5,7 +5,8 @@ module.exports = function gruntCopy(grunt) {
       files: [
         { expand: true, cwd: '.temp', src : './styles/**', dest: 'dev/'},
         { expand: true, src : 'scripts/**', dest: 'dev/'},
-        { expand: true, cwd: '.temp', src : ['./page*/**', './*.html'], dest: 'dev/'}
+        { expand: true, src : 'assets/**', dest: 'dev/'},
+        { expand: true, cwd: '.temp', src : ['./**/*.html'], dest: 'dev/'}
       ]
     },
     build: {
@@ -19,7 +20,8 @@ module.exports = function gruntCopy(grunt) {
             return filename.indexOf('.min.') != -1;
           }
         },
-        { expand: true, cwd: '.temp', src : ['./page*/**', './*.html'], dest: 'public/'}
+        { expand: true, src : 'assets/**', dest: 'public/'},
+        { expand: true, cwd: '.temp', src : ['./**/*.html'], dest: 'public/'}
       ]
     },
     js2temp: {
