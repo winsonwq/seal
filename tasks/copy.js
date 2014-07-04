@@ -4,6 +4,7 @@ module.exports = function gruntCopy(grunt) {
     dev: {
       files: [
         { expand: true, cwd: '.temp', src : './styles/**', dest: 'dev/'},
+        { expand: true, src : 'bower_components/**', dest: 'dev/'},
         { expand: true, src : 'scripts/**', dest: 'dev/'},
         { expand: true, src : 'assets/**', dest: 'dev/'},
         { expand: true, cwd: '.temp', src : ['./**/*.html'], dest: 'dev/'}
@@ -20,6 +21,7 @@ module.exports = function gruntCopy(grunt) {
             return filename.indexOf('.min.') != -1;
           }
         },
+        { expand: true, src : 'bower_components/**', dest: 'public/'},
         { expand: true, src : 'assets/**', dest: 'public/'},
         { expand: true, cwd: '.temp', src : ['./**/*.html'], dest: 'public/'}
       ]
